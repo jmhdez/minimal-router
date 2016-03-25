@@ -1,4 +1,3 @@
-// Required to use some browser features
 import 'babel-polyfill';
 
 import assert from 'assert';
