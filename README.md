@@ -1,0 +1,1 @@
+Just a minimalistic router for client-side javascript applications
