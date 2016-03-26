@@ -160,7 +160,7 @@ const router = new Router()
 	.setPrefix('#');
 	.add('users-by-city', '/users/:city', function() {...});
 
-const url = router.buildUrl('users-by-city', {city: 'madrid'}, {sort: 'desc'});
+const url = router.formatUrl('users-by-city', {city: 'madrid'}, {sort: 'desc'});
 // url === /users/madrid?sort=desc
 
 
