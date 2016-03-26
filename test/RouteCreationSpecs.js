@@ -4,7 +4,7 @@ import assert from 'assert';
 
 import {createRoute, getQueryParams, getMatchedParams} from '../src/Router.js';
 
-describe('createRoute', function() {
+describe('Route creation', function() {
 
 	var noop = function() {};
 	
