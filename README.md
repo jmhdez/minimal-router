@@ -3,11 +3,11 @@ Minimal Router
 
 Minimal Router is a very simplistic router for client-side Javascript applications. It's based on two principles:
 
-* A router must be independent of another framework/libraries, so it must work with plain javascript objects and functions, not React components, AngularJS controllers o similar abstractions.
+* A router must be independent of another framework/libraries, so it must work with plain javascript objects and functions, instead of React components, AngularJS controllers o similar abstractions.
 
-* A router must be independent of navigation and history APIs, so it just needs to be able to register router and dispatch (i.e. invoke) route handlers.
+* A router must be independent of navigation and history APIs, so it just needs to be able to register routes and dispatch (i.e. invoke) route handlers.
 
-There is a more detailed description of the rationale behind router in this [design post](http://blog.koalite.com/2016/03/disenando-un-router-para-aplicaciones-spa/) [Spanish only].
+There is a more detailed description of the rationale behind Minimal Router in this [design post](http://blog.koalite.com/2016/03/disenando-un-router-para-aplicaciones-spa/) [Spanish only].
 
 If you need a more complex/powerful router, or one integrated with your framework of choice, Minimal Router is not for you. Don't worry, there are plenty of other options to choose from.
 
@@ -32,7 +32,7 @@ const router = new Router();
 
 
 // ES5
-// Note that you need to explicitily require the .Router export
+// Note that you need to explicitly require .Router
 var Router = require('minimal-router').Router
 
 var router = new Router();
@@ -56,6 +56,10 @@ Usage
 =====
 
 Once you have a included Minimal Router in your application, you will need to create a `Router` object to be able to define routes and activate them.
+
+```javascript
+const router = new Router();
+```
 
 Define routes
 -------------
@@ -149,7 +153,7 @@ window.onpopstate = function(event) {
 Helper methods
 --------------
 
-Although Minimal Router strives to achieve a minimal API, it provides a couple of utility methods to be able to generate urls for named routes and get the current route:
+Although Minimal Router strives to achieve a minimal API, it provides a couple of utility methods to be able to generate urls for named routes and get the route for an url without dispatching it:
 
 ```javascript
 const router = new Router()
@@ -169,10 +173,9 @@ Building Minimal Router
 
 Building your own copy of Minimal Router is easy:
 
-``
 1. Clone the repo.
 2. npm install 
-``
+
 
 Then you have several options:
 
@@ -184,6 +187,6 @@ Then you have several options:
 Copyright and license
 =====================
 
-Copyright 2016-now Juan M. Hernández.
+Copyright 2016-Today Juan M. Hernández.
 
 Code licensed under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
