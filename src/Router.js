@@ -50,7 +50,7 @@ export default class Router {
 		this.prefix = '';
 	}
 
-	// Adds a route with an [optional] name, a path and a handler function
+	// Adds a route with an _optional_ name, a path and a handler function
 	add(name, path, handler) {
 		if (arguments.length == 2) {
 			this.add('', ...arguments);
@@ -80,7 +80,9 @@ export default class Router {
 	}
 
 	getCurrentRoute(url) {
-		const rp = findRouteParams(this.routes, parseUrl(url).path);
+		const urlWithoutPrefix = url.replace(new RegExp('^' + this.prefix), '');
+		const {path, queryString} = parseUrl(urlWithoutPrefix);
+		const rp = findRouteParams(this.routes, path);
 		return rp && rp.route;
 	}
 

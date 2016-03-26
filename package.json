@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha test --compilers js:babel-register",
     "build": "babel src -d lib",
-    "build:browser": "browserify src/index.js  -t [ babelify ] --standalone Router | uglifyjs > dist/routes.min.js",
+    "build:browser": "browserify src/index.js  -t [ babelify ] --standalone Router | uglifyjs > dist/minimal-router.min.js",
     "dev": "mocha test --watch --compilers js:babel-register"
   },
   "repository": {
