@@ -32,16 +32,18 @@ export function createRoute(name, path, handler) {
 	return {name, path, handler, matcher, params};
 };
 
-function findRouteParams(routes, path) {
+const findRouteParams = (routes, path) => {
 	let params;
 	const route = routes.find(r => params = getMatchedParams(r, path));
 	return route && {route, params};
-}
+};
 
-function parseUrl(url) {
+const parseUrl = (url) => {
 	const [path, queryString] = url.split('?');
-	return {path, queryString};
-}
+	return {path, queryString};	
+};
+
+const stripPrefix = (url ,prefix) => url.replace(new RegExp('^' + prefix), '');
 
 // The actual Router as the default export of the module
 export default class Router {
@@ -66,8 +68,7 @@ export default class Router {
 	}
 
 	dispatch(url) {
-		const urlWithoutPrefix = url.replace(new RegExp('^' + this.prefix), '');
-		const {path, queryString} = parseUrl(urlWithoutPrefix);
+		const {path, queryString} = parseUrl(stripPrefix(url, this.prefix));
 		const query = getQueryParams(queryString || '');
 		const {route, params} = findRouteParams(this.routes, path);
 		
@@ -80,8 +81,7 @@ export default class Router {
 	}
 
 	getCurrentRoute(url) {
-		const urlWithoutPrefix = url.replace(new RegExp('^' + this.prefix), '');
-		const {path, queryString} = parseUrl(urlWithoutPrefix);
+		const {path, queryString} = parseUrl(stripPrefix(url, this.prefix));
 		const rp = findRouteParams(this.routes, path);
 		return rp && rp.route;
 	}
