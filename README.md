@@ -5,7 +5,7 @@ Minimal Router is a very simplistic router for client-side Javascript applicatio
 
 * A router must be independent of another framework/libraries, so it must work with plain javascript objects and functions, instead of React components, AngularJS controllers o similar abstractions.
 
-* A router must be independent of navigation and history APIs, so it just needs to be able to register routes and dispatch (i.e. invoke) route handlers.
+* A router must be independent of navigation and history APIs, so it just needs to be able to register routes and dispatch (i.e. invoke) to route handlers.
 
 There is a more detailed description of the rationale behind Minimal Router in this [design post](http://blog.koalite.com/2016/03/disenando-un-router-para-aplicaciones-spa/) [Spanish only].
 
@@ -20,7 +20,7 @@ The easiest way to use minimal router is to install it as an npm module in your 
 npm install minimal-router
 ```
 
-And the either `import` or `require` the module:
+And then, either `import` or `require` the module:
 
 ```javascript
 
@@ -61,10 +61,10 @@ Once you have a included Minimal Router in your application, you will need to cr
 const router = new Router();
 ```
 
-Define routes
--------------
+Defining routes
+---------------
 
-Each route in Minimal Router is defined by a `path`, a `handler` function that will be called upon activation, and an optional `name`. 
+Each route in Minimal Router is defined by an optional `name`, a `path`, and a `handler` function that will be called upon activation.
 
 To register new routes, use the `add` method:
 
@@ -83,7 +83,7 @@ router.add('product-list', '/catalog/products', function() {
 
 The handler function will receive a single object with two properties `params` and `query`, that will contain the url parameters and the query string arguments.
 
-Parameters can be added to the routes using the syntax `:parameter` in the path, and they will passed to the `handler` function inside the `params` property of the arguments:
+Parameters can be added to the routes using the syntax `:parameter` in the `path`, and they will passed to the `handler` function inside the `params` property of the arguments:
 
 ```javascript
 router.add('user-contact', '/user/:userId/contact/:contactId', function({params}) {
@@ -94,7 +94,7 @@ router.add('user-contact', '/user/:userId/contact/:contactId', function({params}
 })
 ```
 
-In addition to parameters, query string values will also be passed to the `handler` function:
+In addition to parameters, query string values will also be passed to the `handler` function in the `query` property of the arguments:
 
 ```javascript
 // Route for '/users/madrid?sort=desc
@@ -125,7 +125,7 @@ router.dispatch('/users');
 // should print 'users activated!' in the browser console
 ```
 
-This simple mechanism can be easily integrated with whatever library you are using. For example, if you want to integrate it directly with the [History API](https://developer.mozilla.org/en/docs/Web/API/History) all you need to do is:
+This simple mechanism can be easily integrated with whatever library you are using. For example, if you want to integrate it directly with the [History API](https://developer.mozilla.org/en/docs/Web/API/History), all you need to do is:
 
 ```javascript
 
