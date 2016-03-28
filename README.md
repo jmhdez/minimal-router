@@ -1,4 +1,4 @@
-Minimal Router
+﻿Minimal Router [![Build Status](https://travis-ci.org/jmhdez/minimal-router.png?branch=master)](https://travis-ci.org/jmhdez/minimal-router)
 ==============
 
 Minimal Router is a very simplistic router for client-side Javascript applications. It's based on two principles:
