@@ -2,6 +2,7 @@ src
 test
 node_modules
 npm-shrinkwrap.json
+\.travis.yml
 \.babelrc
 \.gitignore
 \.npmignore
