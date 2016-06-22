@@ -137,15 +137,20 @@ router.setPrefix('#');
 // Add routes
 router.add(...);
 
-// Listen browser event
+// Listen browser event for back navigation
 window.onpopstate = function(event) {
-
   // dispatch current url to route
-  
   var path = document.location.hash;
   if (document.location.search.length) {
-    path += '&' + document.location.search;
+    path += '?' + document.location.search;
   }
+  router.dispatch(path);
+};
+
+// Navigate to other routes
+const navigate = function(routeName, query, params) {
+  const url = router.formatUrl(routeName, query, params);
+  history.pushState(null, null, url);
   router.dispatch(path);
 };
 ```
