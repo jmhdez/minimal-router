@@ -22,25 +22,25 @@ export function getQueryParams(query) {
 			const [key, value] = part.split('=');
 			acc[decodeURIComponent(key)] = decodeURIComponent(value);
 			return acc;
-		}, {});	
+		}, {});
 };
 
 export function createRoute(name, path, handler) {
 	const matcher = new RegExp(path.replace(parametersPattern, '([^\/]+)'));
 	const params = (path.match(parametersPattern) || []).map(x => x.substring(1));
-	
+
 	return {name, path, handler, matcher, params};
 };
 
 const findRouteParams = (routes, path) => {
 	let params;
 	const route = routes.find(r => params = getMatchedParams(r, path));
-	return route && {route, params};
+	return {route, params};
 };
 
 const parseUrl = (url) => {
 	const [path, queryString] = url.split('?');
-	return {path, queryString};	
+	return {path, queryString};
 };
 
 const stripPrefix = (url ,prefix) => url.replace(new RegExp('^' + prefix), '');
@@ -71,7 +71,7 @@ export default class Router {
 		const {path, queryString} = parseUrl(stripPrefix(url, this.prefix));
 		const query = getQueryParams(queryString || '');
 		const {route, params} = findRouteParams(this.routes, path);
-		
+
 		if (route) {
 			route.handler({params, query});
 			return route;
