@@ -47,6 +47,16 @@ describe('Router', function() {
 			assert.equal(dispatched, false);
 		});
 
+		it('should not dispatch to prefix routes', function() {
+
+			var dispatched = false;
+
+			router.add('/simple', _ => dispatched = true);
+
+			router.dispatch('/simple1');
+
+			assert.equal(dispatched, false);
+		});
 
 		it('should dispatch to simple routes', function() {
 

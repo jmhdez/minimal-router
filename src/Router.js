@@ -26,7 +26,7 @@ export function getQueryParams(query) {
 };
 
 export function createRoute(name, path, handler) {
-	const matcher = new RegExp(path.replace(parametersPattern, '([^\/]+)'));
+	const matcher = new RegExp(path.replace(parametersPattern, '([^\/]+)') + '$');
 	const params = (path.match(parametersPattern) || []).map(x => x.substring(1));
 
 	return {name, path, handler, matcher, params};
