@@ -7,7 +7,7 @@ import Router from '../src/Router.js';
 describe('Router', function() {
 
 	var router;
-	
+
 	beforeEach(function() {
 		router = new Router();
 	});
@@ -35,6 +35,29 @@ describe('Router', function() {
 	});
 
 	describe('dispatching', function() {
+
+		it('should not dispatch to undefined route', function() {
+
+			var dispatched = false;
+
+			router.add('/simple', _ => dispatched = true);
+
+			router.dispatch('/another');
+
+			assert.equal(dispatched, false);
+		});
+
+		it('should not dispatch to prefix routes', function() {
+
+			var dispatched = false;
+
+			router.add('/simple', _ => dispatched = true);
+
+			router.dispatch('/simple1');
+
+			assert.equal(dispatched, false);
+		});
+
 		it('should dispatch to simple routes', function() {
 
 			var dispatched = false;
@@ -42,14 +65,14 @@ describe('Router', function() {
 			router.add('/simple', _ => dispatched = true);
 
 			router.dispatch('/simple');
-			
+
 			assert.equal(dispatched, true);
 		});
 
 		it('should dispatch to the right route', function() {
 
 			let dispatched;
-			
+
 			router.add('/one', _ => dispatched = 'one');
 			router.add('/two', _ => dispatched = 'two');
 
@@ -87,7 +110,7 @@ describe('Router', function() {
 
 		it('should dispatch to routes with configured prefix', function() {
 			let dispatched = false;
-			
+
 			router.setPrefix('#')
 				.add('/users', _ => dispatched = true);
 
