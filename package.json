@@ -1,6 +1,6 @@
 {
   "name": "minimal-router",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "A minimalist router for client-side javascript applications",
   "main": "lib/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "babel src -d lib",
     "build:browser": "browserify src/index.js  -t [ babelify ] --standalone Router | uglifyjs > dist/minimal-router.min.js",
     "dev": "mocha test --watch --compilers js:babel-register",
-    "prepublish": "npm test && npm build && npm run build:browser"
+    "prepublish": "npm test && npm run build && npm run build:browser"
   },
   "repository": {
     "type": "git",
