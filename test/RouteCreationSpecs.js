@@ -29,12 +29,12 @@ describe('Route creation', function() {
 
 		it('should build matcher regex for routes with one parameter', function() {
 			const r = buildMatcher('/users/:id');
-			assert.equal(r.source, '\\/users\\/([^\\/]+)$');
+			assert.equal(r.source, '\\/users\\/([^/]+)$');
 		});
 
 		it('should build matcher regex for routes with more than one parameters', function() {
 			const r = buildMatcher('/users/:id/contact/:contactId');
-			assert.equal(r.source, '\\/users\\/([^\\/]+)\\/contact\\/([^\\/]+)$');
+			assert.equal(r.source, '\\/users\\/([^/]+)\\/contact\\/([^/]+)$');
 		});
 
 	});

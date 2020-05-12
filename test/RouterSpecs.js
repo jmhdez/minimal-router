@@ -75,7 +75,7 @@ describe('Router', function() {
 
 			router.add('/simple', ({isBack}) => dispatchedIsBack = isBack);
 
-			router.dispatch('/simple');
+			router.dispatch('/simple', true);
 
 			assert.equal(dispatchedIsBack, true);
 		});
