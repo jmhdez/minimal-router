@@ -69,6 +69,18 @@ describe('Router', function() {
 			assert.equal(dispatched, true);
 		});
 
+		it('should dispatch including isBack value', function() {
+
+			var dispatchedIsBack = false;
+
+			router.add('/simple', ({isBack}) => dispatchedIsBack = isBack);
+
+			router.dispatch('/simple');
+
+			assert.equal(dispatchedIsBack, true);
+		});
+
+
 		it('should dispatch to the right route', function() {
 
 			let dispatched;

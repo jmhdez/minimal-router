@@ -67,13 +67,13 @@ export default class Router {
 		return this;
 	}
 
-	dispatch(url) {
+	dispatch(url, isBack) {
 		const {path, queryString} = parseUrl(stripPrefix(url, this.prefix));
 		const query = getQueryParams(queryString || '');
 		const {route, params} = findRouteParams(this.routes, path);
 
 		if (route) {
-			route.handler({params, query});
+			route.handler({params, query, isBack});
 			return route;
 		}
 
